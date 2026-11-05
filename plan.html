@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기획서 — 통신 프로토콜 16진수 해석기</title>
+<meta name="robots" content="index,follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.plan-figs figure{margin:0 0 22px;} .plan-figs img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.plan-figs figcaption{font-size:13px;color:var(--sub);text-align:center;margin-top:6px;}
+.plan td{white-space:normal;} .plan td .btn{min-height:36px;white-space:nowrap;}
+h3{font-size:15px;margin:16px 0 6px;} main ul{margin:0 0 10px 20px;}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="주요 메뉴">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="index.html">통신 프로토콜 16진수 해석기 <small>build-2611-09 · 기획 차준근</small></a>
+    <ul class="topnav-links">
+      <li><a href="index.html">도구</a></li>
+      <li><a href="guide.html">사용법</a></li>
+      <li><a href="plan.html" class="active" aria-current="page">기획서</a></li>
+    </ul>
+  </div>
+</nav>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">생성형 AI 업무자동화 전문가과정 · 2차수 · 프로젝트 09 · 기획서 v1.0</div>
+  <h1>통신 프로토콜 16진수 해석기 기획서</h1>
+  <p>프로토콜 정의 표와 서버에 받은 16진수 데이터를 넣으면 Byte별 의미와 환산값(raw × resolution + offset), 범위 이탈·길이 부족·미정의 바이트 경고, 바이트 지도, 기대값 합격·불합격을 한 번에 보여 주는 검증 도구입니다.</p>
+</div></header>
+<main><div class="wrap">
+<div class="card">
+  <h2 style="margin-top:0">기획서 내려받기</h2>
+  <p class="sub">파이프라인 · 아키텍처 · 와이어프레임 · 개발일지가 들어간 워드 문서입니다. 버전마다 따로 남깁니다.</p>
+  <div class="tablewrap plan"><table><thead><tr><th>버전</th><th>날짜</th><th>바뀐 점</th><th>파일</th></tr></thead><tbody><tr><td><b>v1.0</b></td><td>2026-11-02</td><td>첫 판 — 16진수 해석·환산·경고 7종·바이트 지도·기대값 판정·엑셀 내보내기 / 기획서 워드 판·파이프라인·아키텍처·와이어프레임 추가</td><td><a class="btn primary" href="docs/기획서/build-2611-09_차준근_통신프로토콜16진수해석기_기획서_v1.0.docx" download>워드 내려받기</a></td></tr></tbody></table></div>
+</div>
+<div class="card plan">
+  <h2 style="margin-top:0">요구사항과 구현</h2>
+  <div class="tablewrap"><table><thead><tr><th>기획서 요구</th><th>구현</th></tr></thead><tbody><tr><td>수신 데이터와 프로토콜 문서 입력</td><td>정의: 엑셀 업로드 · 화면 표 편집 · 문서 표 붙여넣기 · (선택) AI 초안 / 데이터: 붙여넣기 · .txt·.csv·.xlsx</td></tr><tr><td>16진수 데이터 해석</td><td>공백·콤마·0x·h 혼용, 붙여 쓰기, 여러 줄 일괄</td></tr><tr><td>데이터 종류와 Byte 위치에 따라 다른 의미</td><td>메시지 ID(위치·길이 설정)로 메시지 종류를 고르고 그 항목만 적용</td></tr><tr><td>데이터 위치·의미·환산식(Resolution)</td><td>시작 Byte·bit, 길이, 빅·리틀 엔디언, 부호, Resolution·Offset, 단위, 열거값, 무효값</td></tr><tr><td>각 Byte 의 의미와 환산 결과 자동 도출</td><td>항목별 해석 표 · Byte별 의미 표 · 바이트 지도</td></tr><tr><td>정상 전송 검증</td><td>경고 7종 + 기대값 합격·불합격 판정</td></tr><tr><td>해석 오류 감소</td><td>정의 검증(형식·bit 겹침·길이 초과), 해석 규칙은 테스트로 고정</td></tr></tbody></table></div>
+</div>
+<div class="card plan-figs"><h2 style="margin-top:0">그림으로 보기</h2><figure><img src="docs/img/pipeline.png" alt="처리 흐름(파이프라인)" loading="lazy"><figcaption>처리 흐름(파이프라인)</figcaption></figure><figure><img src="docs/img/architecture.png" alt="구성(아키텍처)" loading="lazy"><figcaption>구성(아키텍처)</figcaption></figure><figure><img src="docs/img/wireframe-1.png" alt="와이어프레임 — 정의·입력 화면" loading="lazy"><figcaption>와이어프레임 — 정의·입력 화면</figcaption></figure><figure><img src="docs/img/wireframe-2.png" alt="와이어프레임 — 해석 결과 화면" loading="lazy"><figcaption>와이어프레임 — 해석 결과 화면</figcaption></figure><figure><img src="docs/img/screen.png" alt="실제 화면(예제 데이터)" loading="lazy"><figcaption>실제 화면(예제 데이터)</figcaption></figure></div>
+<div class="card"><h2 style="margin-top:0">개발일지</h2><h3>2026-11-02 · 첫 판</h3><ul><li>패들릿 build02 차준근 기획(게시물 4127020902)을 작업 지시서(CLAUDE.md)로 옮기고 구현</li><li>해석 엔진 proto.js — 16진수 읽기, 정의 검증, 엔디언·부호·bit 추출, 환산, 경고, 기대값 판정</li><li>화면 — 정의 표 편집·결과 목록·바이트 지도·항목·Byte 표·엑셀·AI 초안(선택)</li><li>해석 테스트 77 · 화면 테스트 17 통과, 배포</li></ul></div>
+</div></main>
+<footer><div class="wrap">생성형 AI 업무자동화 전문가과정 · 2차수 · 프로젝트 09 · 기획 차준근 · <a href="https://build-2611-00.jobability.co.kr/">2차수 프로젝트 총괄</a></div></footer>
+</body>
+</html>
