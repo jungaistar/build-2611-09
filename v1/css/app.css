@@ -1,0 +1,61 @@
+/* 이 앱 전용 — 공통 style.css 뒤에 읽는다 */
+[hidden]{display:none !important;}
+h3{font-size:16px; font-weight:700; margin:24px 0 8px;}
+h3 small{font-weight:400;}
+.ctrl{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:6px 0 12px; font-size:14px;}
+.ctrl label{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.ctrl label.grow{flex:1 1 260px;} .ctrl label.grow input{flex:1 1 180px; min-width:0;}
+.ctrl input,.ctrl select{font:inherit; font-size:14px; padding:6px 8px; border:1px solid var(--line); border-radius:7px; background:#fff;}
+.w-s{width:72px;}
+.btn.sm{min-height:34px; padding:0 12px; font-size:13px;}
+.drop.slim{padding:16px 14px; margin-top:10px;} .drop.slim b{font-size:14px;}
+textarea{width:100%; font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; padding:10px 12px;
+  border:1px solid var(--line); border-radius:9px; background:#fbfdff; resize:vertical;}
+
+details.more{margin-top:18px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fbfcfd;}
+details.more summary{cursor:pointer; font-weight:650; font-size:14px;}
+details.more[open] summary{margin-bottom:8px;}
+
+/* 편집 표 */
+.tablewrap.edit{max-height:none;}
+.edit td{padding:2px 3px;}
+.edit input{font:inherit; font-size:12.5px; width:100%; min-width:64px; padding:5px 6px; border:1px solid transparent; border-radius:5px; background:transparent;}
+.edit input:hover{border-color:var(--line);} .edit input:focus{border-color:var(--accent); background:#fff; outline:none;}
+.edit td.c-name input{min-width:150px;} .edit td.c-enums input{min-width:220px;} .edit td.c-note input{min-width:140px;}
+.edit td.c-num input{min-width:58px;}
+.edit .x{border:0; background:none; color:var(--danger); cursor:pointer; font-size:12.5px; padding:4px 6px;}
+
+/* 결과 목록 */
+#lines table tbody tr{cursor:pointer;}
+#lines tbody tr:hover td{background:#f3f8fb;}
+#lines tbody tr.sel td{background:#e3f0f7;}
+.tag{display:inline-block; font-size:11.5px; font-weight:700; border-radius:5px; padding:1px 7px;}
+.tag.ok{background:#d6ecdf; color:#08422a;} .tag.warn{background:#fbe7b5; color:#5a3a00;}
+.tag.error{background:#f4b9ad; color:#7a1a0c;} .tag.info{background:#dceaf3; color:#0b3a4f;}
+.tag.pass{background:#0a6045; color:#fff;} .tag.fail{background:var(--danger); color:#fff;} .tag.none{background:#eef2f6; color:var(--sub);}
+td.wrap{white-space:normal; min-width:260px;}
+.stat.bad{background:#fdeae7;} .stat.good{background:#e9f6f0;}
+
+/* 바이트 지도 — 색만으로 구분하지 않도록 항목 번호를 칸에 함께 쓴다 */
+.bmap{display:flex; flex-wrap:wrap; gap:4px; margin:10px 0 6px;}
+.bcell{width:58px; border-radius:7px; border:1px solid rgba(0,0,0,.08); padding:4px 3px 5px; text-align:center; font-variant-numeric:tabular-nums;}
+.bcell .bi{display:block; font-size:10.5px; color:#3d4b59;}
+.bcell .bh{display:block; font:700 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;}
+.bcell .bo{display:block; font-size:10.5px; color:#2b3742; min-height:14px;}
+.bcell.k-id{background:#cfd8e1;} .bcell.k-undef{background:#fff; border:2px dashed var(--danger);}
+.bcell.k-extra{background:#fff; border:2px dotted #8a96a3; color:#8a96a3;}
+.bcell.k-partial{outline:2px dashed #5b6b7b; outline-offset:-3px;}
+.blegend{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12.5px; color:var(--sub); margin:4px 0 12px;}
+.blegend i{display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:-2px; margin-right:5px; border:1px solid rgba(0,0,0,.1);}
+.blegend i.k-undef{border:2px dashed var(--danger); background:#fff;} .blegend i.k-id{background:#cfd8e1;}
+.blegend i.k-extra{border:2px dotted #8a96a3; background:#fff;}
+.c0{background:#cfe4f5;} .c1{background:#d6ecdf;} .c2{background:#fbe7b5;} .c3{background:#ead9f3;} .c4{background:#f8d5cc;}
+.c5{background:#d3eeee;} .c6{background:#e8e3c9;} .c7{background:#f6d6e6;} .c8{background:#dbe0f7;} .c9{background:#e2ecc7;}
+tr.st-range td,tr.st-enum td{background:#fff6df;} tr.st-short td{background:#fdeae7;} tr.st-invalid td{background:#eef3f7;}
+tr.ck-fail td{background:#fdeae7;}
+.detail{margin-top:18px; border-top:1px solid var(--line); padding-top:6px;}
+.src{display:inline-block; margin-left:5px; font-size:10.5px; font-weight:700; color:#0b3a4f; background:#dceaf3; border-radius:4px; padding:1px 5px;}
+.ai-draft{border:2px dashed #7a5bb8; border-radius:10px; padding:12px 14px; margin-top:12px; background:#f8f5fd;}
+.ai-draft .badge{display:inline-block; background:#7a5bb8; color:#fff; font-size:12px; font-weight:700; border-radius:5px; padding:2px 8px; margin-bottom:8px;}
+.warn ul,.ok ul{margin:6px 0 0 18px;}
+details.more.edit-box{margin-top:6px;}

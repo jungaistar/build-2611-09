@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사용법 — 통신 프로토콜 16진수 해석기</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<nav class="topnav" aria-label="주요 메뉴">
+  <div class="topnav-inner">
+    <a class="topnav-brand" href="index.html">통신 프로토콜 16진수 해석기 <small>build-2611-09 · 기획 차준근</small></a>
+    <ul class="topnav-links">
+      <li><a href="index.html">해석기</a></li>
+      <li><a href="guide.html" class="active" aria-current="page">사용법</a></li>
+      <li><a href="plan.html">기획서</a></li>
+    </ul>
+  </div>
+</nav>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">사용법</div>
+  <h1>프로토콜 표 한 장으로 16진수를 읽습니다</h1>
+  <p>정의 표와 받은 데이터만 있으면 됩니다. 해석은 전부 이 브라우저 안에서 끝나고 파일은 어디로도 올라가지 않습니다.</p>
+</div></header>
+<main><div class="wrap">
+<div class="card">
+  <h2 style="margin-top:0">1. 프로토콜 정의 표</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>열</th><th>뜻</th></tr></thead>
+    <tbody>
+      <tr><td>메시지ID</td><td>이 항목이 속한 메시지입니다. 16진수는 <code>0x01</code> 처럼 0x 를 붙여 주세요. 메시지가 한 종류면 비워도 됩니다.</td></tr>
+      <tr><td>항목명</td><td>가동시간·SOC 같은 데이터 이름입니다.</td></tr>
+      <tr><td>시작Byte · 시작bit</td><td>공통 설정의 Byte 번호(0 부터 또는 1 부터) 기준입니다. bit 항목은 시작 bit 를 함께 적습니다. 0 이 최하위 bit 입니다.</td></tr>
+      <tr><td>길이 · 길이단위</td><td>숫자와 단위(Byte 또는 bit)입니다.</td></tr>
+      <tr><td>바이트순서</td><td>빅(Motorola, 앞 바이트가 상위) 또는 리틀(Intel, 앞 바이트가 하위)입니다. 비우면 빅입니다.</td></tr>
+      <tr><td>부호</td><td>있음이면 2의 보수로 읽습니다. 0xFFE7 은 −25 가 됩니다.</td></tr>
+      <tr><td>Resolution · Offset</td><td>환산값 = raw × Resolution + Offset 입니다. 비우면 1 과 0 입니다.</td></tr>
+      <tr><td>최소 · 최대</td><td>환산값의 허용 범위입니다. 벗어나면 범위 이탈로 표시합니다.</td></tr>
+      <tr><td>무효값</td><td>센서 없음·측정 불가를 뜻하는 raw 값입니다(예: <code>0xFF</code>). 이 값이면 환산하지 않습니다.</td></tr>
+      <tr><td>열거값</td><td><code>0=정지; 1=주행</code> 형식입니다. 표에 없는 값이 오면 알려 줍니다.</td></tr>
+      <tr><td>기대값 · 허용오차</td><td>모든 줄에 같은 기대값을 줄 때 씁니다. 허용오차를 비우면 Resolution 의 절반입니다.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub" style="margin-top:10px">메시지 표에는 메시지ID · 이름 · 길이(Byte)를 적습니다.
+  길이를 비우면 항목이 끝나는 위치로 계산하고, 화면에 「항목 끝에서 계산」으로 구분해 보여 줍니다.
+  열 이름이 조금 달라도 읽습니다(Signal · StartByte · Scale · ByteOrder 등).</p>
+</div>
+<div class="card">
+  <h2 style="margin-top:0">2. 수신 데이터</h2>
+  <p>한 줄에 메시지 하나입니다. <code>01 0A FF</code> · <code>0x01,0x0A,0xFF</code> · <code>010AFF</code> 모두 같은 3 Byte 로 읽습니다.</p>
+  <p>줄 앞에 <code>09:00:01 |</code> 처럼 라벨을, 뒤에 <code>=&gt; SOC=76.5; 충전상태=완충</code> 처럼 기대값을 붙일 수 있습니다.
+  숫자 기대값은 허용오차 안이면 합격입니다. 글자 기대값은 열거 이름과 맞추고, <code>0x12</code> 처럼 16진수로 적으면 raw 와 맞춥니다.</p>
+  <p>엑셀로 올릴 때는 「데이터」 열에 16진수, 「라벨」 열(선택), 「기대_SOC」 같은 기대값 열(선택)을 둡니다.</p>
+</div>
+<div class="card">
+  <h2 style="margin-top:0">3. 경고의 뜻</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>경고</th><th>뜻</th></tr></thead>
+    <tbody>
+      <tr><td>미정의 메시지 ID</td><td>ID 바이트 값이 메시지 표에 없습니다.</td></tr>
+      <tr><td>길이 부족</td><td>정의 길이보다 짧게 받았습니다. 받은 만큼은 해석하고, 모자란 항목은 비웁니다.</td></tr>
+      <tr><td>정의보다 깁니다</td><td>넘친 바이트는 바이트 지도에 점선으로 보이고 해석하지 않습니다.</td></tr>
+      <tr><td>미정의 바이트</td><td>어느 항목에도 속하지 않는 바이트입니다. 예약 바이트인지 정의 누락인지 확인해 주세요.</td></tr>
+      <tr><td>범위 이탈 · 열거표 밖 · 무효값</td><td>항목별 해석 표의 상태 칸에 이유와 함께 나옵니다.</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h2 style="margin-top:0">4. 이번 판에서 하지 않는 것</h2>
+  <ul style="margin-left:20px">
+    <li>서버 실시간 수신 연동 — 받은 데이터를 붙여넣거나 파일로 올리는 방식입니다.</li>
+    <li>체크섬·CRC 검사, 여러 프레임을 이어 붙이는 분할 전송 해석.</li>
+  </ul>
+</div>
+</div></main>
+<footer><div class="wrap">생성형 AI 업무자동화 전문가과정 2차수 · 프로젝트 09 · 기획 차준근</div></footer>
+</body>
+</html>

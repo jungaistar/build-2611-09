@@ -1,0 +1,4 @@
+S.P	Length	Parameter Name	HCESPN
+1	1 byte	RMS Message Type (= 0xA1)	16
+2-7	6 bytes	Date & Time	90
+8-31	24 bytes	Total Shift Mode & Actual Gear Distribution (sec)	127
