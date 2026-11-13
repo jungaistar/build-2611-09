@@ -155,6 +155,10 @@ window.AUTH_CONFIG = {
         {
           "image": "images/slide-1.jpg",
           "tone": "dark"
+        },
+        {
+          "image": "images/slide-2.jpg",
+          "tone": "dark"
         }
       ],
       "heroMode": "slide",
