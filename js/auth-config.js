@@ -146,23 +146,20 @@ window.AUTH_CONFIG = {
     },
     "landing": {
       "company": {
-        "name": "HD건설기계",
-        "en": "HD CONSTRUCTION EQUIPMENT",
+        "name": "HD현대사이트솔루션",
+        "en": "HD HYUNDAI SITE SOLUTION",
         "logo": "images/logo.png",
         "logoH": 24
       },
       "slides": [
         {
-          "image": "images/slide-1.jpg"
-        },
-        {
-          "image": "images/slide-2.jpg"
-        },
-        {
-          "image": "images/slide-3.jpg"
+          "image": "images/slide-1.jpg",
+          "tone": "dark"
         }
       ],
-      "heroMode": "slide"
+      "heroMode": "slide",
+      "headline": "HEX RAW DATA,\n복잡한 통신 데이터를 한눈에",
+      "lead": "통신 프로토콜과 HCESPN 정의를 등록하면 16진수 RAW DATA의 Message Type을 자동으로 식별하고, 각 Byte의 의미와 환산값을 분석합니다. Byte에 마우스를 올리는 것만으로 상세 해석을 확인하고, 새로운 HCESPN도 간편하게 추가합니다."
     }
   }
 };
